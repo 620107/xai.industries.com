@@ -10,7 +10,7 @@ const jetbrains = JetBrains_Mono({ subsets: ["latin"], variable: "--font-jetbrai
 export const metadata: Metadata = {
   title: 'Xai-industries | Engineering the Future. Powering Intelligent Industries.',
   description: 'Industrial innovation through AI-powered automation, future-ready infrastructure, and intelligent manufacturing solutions. Engineering the future of industry.',
-  generator: 'v0.app',
+  generator: 'X.AI',
   keywords: ['industrial', 'automation', 'AI', 'robotics', 'manufacturing', 'future technology', 'intelligent systems'],
   authors: [{ name: 'Xai-industries' }],
   icons: {
