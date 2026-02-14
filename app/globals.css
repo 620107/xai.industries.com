@@ -1,0 +1,345 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* Futuristic Dark Theme - Neon Sky Blue & Cyan (Industrial) */
+  --background: #030712;
+  --foreground: #f0f9ff;
+  --card: rgba(0, 15, 30, 0.6);
+  --card-foreground: #f0f9ff;
+  --popover: #030712;
+  --popover-foreground: #f0f9ff;
+  --primary: #00D4FF;
+  --primary-foreground: #030712;
+  --secondary: #0a1628;
+  --secondary-foreground: #00D4FF;
+  --muted: #0a1628;
+  --muted-foreground: #7dd3fc;
+  --accent: #00E5FF;
+  --accent-foreground: #030712;
+  --destructive: #ef4444;
+  --destructive-foreground: #fef2f2;
+  --border: rgba(0, 212, 255, 0.15);
+  --input: rgba(0, 212, 255, 0.1);
+  --ring: #00D4FF;
+  --chart-1: #00D4FF;
+  --chart-2: #00E5FF;
+  --chart-3: #38bdf8;
+  --chart-4: #0ea5e9;
+  --chart-5: #06b6d4;
+  --radius: 0.75rem;
+  --sidebar: #030712;
+  --sidebar-foreground: #f0f9ff;
+  --sidebar-primary: #00D4FF;
+  --sidebar-primary-foreground: #030712;
+  --sidebar-accent: #0a1628;
+  --sidebar-accent-foreground: #00D4FF;
+  --sidebar-border: rgba(0, 212, 255, 0.15);
+  --sidebar-ring: #00D4FF;
+  
+  /* Custom glow colors - Neon Green Energy */
+  --glow-primary: #00FF88;
+  --glow-secondary: #00E0FF;
+  --glow-tertiary: #00FFA3;
+}
+
+@theme inline {
+  --font-sans: 'Inter', var(--font-inter), 'Inter Fallback', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', var(--font-jetbrains), 'JetBrains Mono Fallback', monospace;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* ============================================
+   UX FIX #1: DISABLE TEXT EDITING/BLINKING CURSOR
+   ============================================ */
+/* Disable text selection on all non-input content */
+body *:not(input):not(textarea):not([contenteditable="true"]) {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: default;
+}
+
+/* Allow text selection ONLY in form inputs */
+input,
+textarea,
+[contenteditable="true"] {
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+  cursor: text;
+}
+
+/* Ensure buttons and interactive elements have pointer cursor */
+button,
+a,
+[role="button"],
+.cursor-pointer {
+  cursor: pointer !important;
+}
+
+/* Disable any accidental contenteditable behavior */
+*:not(input):not(textarea):not([contenteditable="true"]) {
+  -webkit-user-modify: read-only;
+  -moz-user-modify: read-only;
+}
+
+/* ============================================
+   UX FIX #2: KEYBOARD SCROLL SPEED OPTIMIZATION
+   ============================================ */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Ensure smooth but fast scrolling */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Custom animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.5; filter: blur(20px); }
+  50% { opacity: 0.8; filter: blur(30px); }
+}
+
+@keyframes energy-flow {
+  0% { transform: translateY(-100%); opacity: 0; }
+  50% { opacity: 1; }
+  100% { transform: translateY(100%); opacity: 0; }
+}
+
+@keyframes particle-float {
+  0%, 100% { transform: translateY(0) translateX(0); opacity: 0.3; }
+  50% { transform: translateY(-30px) translateX(10px); opacity: 0.8; }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 20px rgba(0, 255, 136, 0.3), 0 0 40px rgba(0, 255, 136, 0.1); }
+  50% { box-shadow: 0 0 30px rgba(0, 255, 136, 0.5), 0 0 60px rgba(0, 255, 136, 0.2); }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 4s ease-in-out infinite;
+}
+
+.animate-energy-flow {
+  animation: energy-flow 3s ease-in-out infinite;
+}
+
+.animate-particle-float {
+  animation: particle-float 4s ease-in-out infinite;
+}
+
+.animate-shimmer {
+  animation: shimmer 3s linear infinite;
+}
+
+.animate-glow-pulse {
+  animation: glow-pulse 3s ease-in-out infinite;
+}
+
+/* Glow effects */
+.glow-text {
+  text-shadow: 0 0 20px rgba(0, 255, 136, 0.5), 0 0 40px rgba(0, 255, 136, 0.3);
+}
+
+.glow-border {
+  box-shadow: 0 0 15px rgba(0, 255, 136, 0.2), inset 0 0 15px rgba(0, 255, 136, 0.05);
+}
+
+/* Glassmorphism */
+.glass {
+  background: rgba(0, 20, 15, 0.4);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 255, 136, 0.1);
+}
+
+/* Industrial watermark */
+.watermark {
+  position: absolute;
+  font-size: 120px;
+  font-weight: 900;
+  color: rgba(0, 255, 136, 0.02);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  pointer-events: none;
+  user-select: none;
+  white-space: nowrap;
+}
+
+/* Floating animation for certificates */
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0px) rotateX(5deg) rotateY(-5deg); }
+  50% { transform: translateY(-15px) rotateX(-5deg) rotateY(5deg); }
+}
+
+.animate-float-slow {
+  animation: float-slow 8s ease-in-out infinite;
+}
+
+/* Hide scrollbar for smooth experience */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* ============================================
+   XAI INDUSTRIES ANIMATED LOGO STYLES
+   ============================================ */
+
+/* Logo glow pulse animation */
+@keyframes logo-glow {
+  0%, 100% { 
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  50% { 
+    opacity: 0.7;
+    transform: scale(1.1);
+  }
+}
+
+.animate-logo-glow {
+  animation: logo-glow 3s ease-in-out infinite;
+}
+
+/* Logo shimmer effect - sweeping light across */
+@keyframes logo-shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.animate-logo-shimmer {
+  animation: logo-shimmer 3s ease-in-out infinite;
+}
+
+/* Logo container subtle shine */
+@keyframes logo-shine {
+  0%, 100% { 
+    filter: brightness(1) contrast(1);
+  }
+  50% { 
+    filter: brightness(1.1) contrast(1.05);
+  }
+}
+
+.animate-logo-shine {
+  animation: logo-shine 4s ease-in-out infinite;
+}
+
+/* Energy pulse ring */
+@keyframes logo-pulse {
+  0%, 100% { 
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% { 
+    opacity: 0.6;
+    transform: scale(1.05);
+  }
+}
+
+.animate-logo-pulse {
+  animation: logo-pulse 2s ease-in-out infinite;
+}
+
+/* Sparkle animations */
+@keyframes logo-sparkle {
+  0%, 100% { 
+    opacity: 0;
+    transform: scale(0);
+  }
+  50% { 
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-logo-sparkle {
+  animation: logo-sparkle 2s ease-in-out infinite;
+}
+
+.animate-logo-sparkle-delayed {
+  animation: logo-sparkle 2s ease-in-out infinite 1s;
+}
+
+/* Chatbot logo specific - smaller, more subtle */
+@keyframes chatbot-logo-glow {
+  0%, 100% { 
+    box-shadow: 0 0 8px rgba(0, 212, 255, 0.3);
+  }
+  50% { 
+    box-shadow: 0 0 16px rgba(0, 212, 255, 0.5), 0 0 24px rgba(0, 212, 255, 0.2);
+  }
+}
+
+.animate-chatbot-logo {
+  animation: chatbot-logo-glow 2.5s ease-in-out infinite;
+}
