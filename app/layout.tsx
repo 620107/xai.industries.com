@@ -128,7 +128,7 @@ font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
 ">
-  v0
+  xai
 </span>
 </div>` }} />
 </body>
